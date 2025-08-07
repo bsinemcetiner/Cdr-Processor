@@ -31,4 +31,5 @@ public class Cdr {
     private Direction direction;
     @Enumerated(EnumType.STRING)
     private Result result;
+    private Double callCost;
 }

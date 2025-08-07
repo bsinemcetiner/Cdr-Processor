@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CdrMapper {
     public Cdr toEntity(CdrRequest request) {
+        double costPerMinute = 0.10;
+        double durationInMinutes = request.getConversationDuration() / 60.0;
+        double callCost = durationInMinutes * costPerMinute;
+
         return Cdr.builder()
                 .startTime(request.getStartTime())
                 .endTime(request.getEndTime())
@@ -20,7 +24,7 @@ public class CdrMapper {
                 .conversationDuration(request.getConversationDuration())
                 .direction(request.getDirection())
                 .result(request.getResult())
+                .callCost(callCost)
                 .build();
     }
 }
-
